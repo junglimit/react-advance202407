@@ -6,7 +6,13 @@ const ReduxCounter = () => {
     return (
         <main className={styles.counter}>
             <h1>Redux Counter</h1>
-            <div className={styles.value}>-- COUNTER VALUE --</div>
+            <div className={styles.value}>0</div>
+
+            <div>
+                <button>Increment</button>
+                <button>Decrement</button>
+            </div>
+
             <button>Toggle Counter</button>
         </main>
     );
