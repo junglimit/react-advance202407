@@ -13,8 +13,15 @@ const cartSlice = createSlice({
             // 추가될 상품 객체
             const newCartItem = action.payload;
             // 이 상품이 기존 장바구니 배열에 포함 되어있는 상품인지 탐색
-            console.log('new: ', newCartItem);
+            const existingItem = state.cartItems.find(item => item.id === newCartItem.id);
 
+            if (!existingItem) { // 처음 장바구니에 추가된 상품인 경우
+                state.cartItems.push(newCartItem);
+
+            } else {
+                existingItem.quantity++;
+                existingItem.total += newCartItem.price;
+            }
 
         }
     }
