@@ -1,12 +1,15 @@
 import React from 'react';
-import ReduxCounter from './redux-practice/components/ReduxCounter';
+import Layout from './redux-cart/components/Layout/Layout';
+import Cart from './redux-cart/components/Cart/Cart';
+import Products from './redux-cart/components/Shop/Products';
 
 const App = () => {
 
     return (
-        <>
-            <ReduxCounter />
-        </>
+        <Layout>
+            <Cart />
+            <Products />
+        </Layout>
     );
 };
 
