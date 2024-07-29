@@ -1,4 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
+import cartItem from "../components/Cart/CartItem";
 
 const initialState = {
     cartItems: [], // 장바구니에 담긴 상품 객체들
@@ -17,12 +18,27 @@ const cartSlice = createSlice({
 
             if (!existingItem) { // 처음 장바구니에 추가된 상품인 경우
                 state.cartItems.push(newCartItem);
-
             } else {
                 existingItem.quantity++;
                 existingItem.total += newCartItem.price;
             }
+                state.totalQuantity++;
 
+        },
+        removeCartItem(state, action) {
+            const id = action.payload;
+            // 장바구니에서 해당 아이템 찾기
+            const existingItem = state.cartItems.find(item => item.id === id);
+
+            if (existingItem) {
+                if (existingItem.quantity === 1) {
+                    state.cartItems = state.cartItems.filter(item => item.id !== id);
+                } else {
+                    existingItem.quantity--;
+                    existingItem.total -= existingItem.price;
+                }
+                state.totalQuantity--;
+            }
         }
     }
 });
